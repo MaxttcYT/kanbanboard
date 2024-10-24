@@ -1,0 +1,165 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.kanban-board {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.row {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 400px;
+  height: 90vh;
+  overflow-y: auto; /* Changed to 'auto' for better UX */
+}
+
+.task {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s; /* Added transition */
+}
+
+.task:hover {
+  background-color: #d0d0d0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow on hover */
+}
+
+/* Improved button styling */
+.btns {
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack buttons vertically */
+  width: 100%; /* Full width of the parent */
+}
+
+.btns button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: #ffffff; /* White text for contrast */
+  border: none;
+  padding: 15px; /* Increased padding for better touch targets */
+  font-size: 1.5rem; /* Adjusted font size for better readability */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.btns button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.task.dragged {
+  animation: grabAnimation 0.3s ease alternate;
+}
+
+@keyframes grabAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+.task-remove-btn {
+  width: 50%;
+  height: 30px;
+  margin: 0;
+  padding: 1px;
+}
+
+.task-remove-btn > img {
+  width: 20px;
+  height: 25px;
+}
+
+@media (max-width: 768px) {
+  .kanban-board {
+    flex-direction: column;
+    align-items: center; /* Center items in column layout */
+  }
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  transition: opacity 0.3s; /* Smooth transition for modal appearance */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 8px; /* Rounded corners for modal */
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Focus styles for accessibility */
+.btns button:focus,
+.close-button:focus {
+  outline: 2px solid #0056b3; /* Example focus outline */
+  outline-offset: 2px;
+}
+
+/* Modal Button Styles */
+.modal-button {
+  background-color: #28a745; /* Green color for success */
+  color: #ffffff; /* White text for contrast */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  padding: 12px 20px; /* Added padding for better click area */
+  cursor: pointer; /* Pointer cursor for better UX */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions */
+}
+
+.modal-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.modal-button:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5); /* Custom focus outline */
+}
+
+.modal-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
