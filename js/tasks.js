@@ -24,6 +24,7 @@ export function saveTasks() {
         done: getTasksFromColumn('done')
     };
     localStorage.setItem('kanbanTasks', JSON.stringify(tasks));
+    console.log("saved")
 }
 
 export function getTasksFromColumn(columnId) {
@@ -31,14 +32,13 @@ export function getTasksFromColumn(columnId) {
     return Array.from(column.querySelectorAll('.task > p')).map(task => task.innerText);
 }
 
-export function createTask(taskData) {
+export function createTask(taskText) {
     const template = document.getElementById('task');
     const clone = document.importNode(template.content, true);
 
     const taskElement = clone.querySelector('.task');
     const taskParagraph = clone.querySelector('.task-text');
-    console.log(taskData)
-    taskParagraph.innerText = taskData["taskTitle"];
+    taskParagraph.innerText = taskText;
 
     taskElement.setAttribute('draggable', true); // Enable drag-and-drop
     taskElement.addEventListener('dragstart', dragStart);

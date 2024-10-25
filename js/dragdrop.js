@@ -1,3 +1,4 @@
+import { saveTasks } from './tasks.js';
 let draggedTask = null;
 let placeholder = document.createElement('div');
 placeholder.className = 'placeholder';

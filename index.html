@@ -14,23 +14,8 @@
         <div class="modal-content">
             <span class="close-button" id="closeModal">&times;</span>
             <h2>Add New Task</h2>
-            <label for="taskTitle" for="taskInput">Title:</label>
-            <div class="tooltip">
-                <input type="text" id="taskInput" class="modal-input tooltip" placeholder="Enter task content"
-                    name="taskTitle" required />
-                <span class="tooltiptext">Please fill out!</span>
-            </div>
-            <label for="taskDue">Due Date:</label>
-            <div class="tooltip">
-                <input type="date" class="modal-input tooltip" id="dateInput" name="taskDue" required />
-                <span class="tooltiptext">Please fill out!</span>
-            </div>
-            <label for="taskTime">Due Time:</label>
-            <div class="tooltip">
-                <input type="time" class="modal-input tooltip" id="timeInput" name="taskTime" value="12:00" data-defaultValue="12:00" required />
-                <span class="tooltiptext">Please fill out!</span>
-            </div>
-            <button id="submitTask" class="modal-button" id="addTaskButton">Add Task</button>
+            <input type="text" id="taskInput" class="modal-input" placeholder="Enter task content" />
+            <button id="submitTask" class="modal-button">Add Task</button>
         </div>
     </div>
 
@@ -42,7 +27,6 @@
     <template id="task">
         <div class="task" draggable="true">
             <p contenteditable="true" class="task-text">title error</p>
-
             <button class="task-remove-btn"><img src="./img/trash.svg" alt="delete"></button>
         </div>
     </template>
@@ -62,7 +46,6 @@
     </div>
 
     <script type="module" src="./js/tasks.js"></script>
-    <script type="module" src="./js/utils.js"></script>
     <script type="module" src="./js/dragdrop.js"></script>
     <script type="module" src="./js/modal.js"></script>
     <script type="module" src="./js/main.js"></script>
