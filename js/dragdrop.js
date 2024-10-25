@@ -1,7 +1,3 @@
-// dragdrop.js
-
-import { saveTasks } from './tasks.js';
-
 let draggedTask = null;
 
 export function initializeDragAndDrop() {
@@ -9,9 +5,14 @@ export function initializeDragAndDrop() {
 
     rows.forEach(row => {
         row.addEventListener('dragover', dragOver);
-        row.addEventListener('dragenter', dragEnter);
-        row.addEventListener('dragleave', dragLeave);
         row.addEventListener('drop', drop);
+    });
+
+    // Add event listeners to each task
+    const tasks = document.querySelectorAll('.task');
+    tasks.forEach(task => {
+        task.addEventListener('dragstart', dragStart);
+        task.addEventListener('dragend', dragEnd);
     });
 }
 
@@ -30,21 +31,28 @@ export function dragEnd() {
 
 function dragOver(e) {
     e.preventDefault();
-}
 
-function dragEnter(e) {
-    e.preventDefault();
-    this.style.backgroundColor = '#e6e6e6';
-}
+    // Find the task being dragged over
+    const targetTask = e.target.closest('.task');
+    if (targetTask && targetTask !== draggedTask) {
+        const row = targetTask.parentNode;
+        const bounding = targetTask.getBoundingClientRect();
+        const offset = e.clientY - bounding.top;
 
-function dragLeave() {
-    this.style.backgroundColor = '#fff';
-}
-
-function drop() {
-    this.style.backgroundColor = '#fff';
-    if (draggedTask) {
-        this.appendChild(draggedTask);
+        // Determine the insertion point: before or after the target
+        if (offset > bounding.height / 2) {
+            row.insertBefore(draggedTask, targetTask.nextSibling);
+        } else {
+            row.insertBefore(draggedTask, targetTask);
+        }
     }
-    saveTasks();
+}
+
+function drop(e) {
+    e.preventDefault();
+    if (draggedTask) {
+        draggedTask.style.display = 'block';
+        draggedTask.classList.remove('dragging');
+        saveTasks();
+    }
 }
