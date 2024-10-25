@@ -31,13 +31,14 @@ export function getTasksFromColumn(columnId) {
     return Array.from(column.querySelectorAll('.task > p')).map(task => task.innerText);
 }
 
-export function createTask(taskText) {
+export function createTask(taskData) {
     const template = document.getElementById('task');
     const clone = document.importNode(template.content, true);
 
     const taskElement = clone.querySelector('.task');
     const taskParagraph = clone.querySelector('.task-text');
-    taskParagraph.innerText = taskText;
+    console.log(taskData)
+    taskParagraph.innerText = taskData["taskTitle"];
 
     taskElement.setAttribute('draggable', true); // Enable drag-and-drop
     taskElement.addEventListener('dragstart', dragStart);

@@ -163,3 +163,64 @@ body {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.error {
+  border-color: red !important;
+  outline-color: red !important;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.tooltip.error .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.placeholder {
+  height: 5px; /* Thickness of the line */
+  background-color: #007bff; /* Line color */
+  margin: 5px 0; /* Space around the line */
+  border-radius: 5px;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px; /* Space between inputs */
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the input */
+  left: 50%;
+  margin-left: -60px; /* Center the tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Arrow for tooltip */
+.tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Position the arrow below the tooltip */
+  left: 50%;
+  margin-left: -5px; /* Center the arrow */
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent; /* Arrow color */
+}
+
+/* Show tooltip when any tooltip input has the error class */
+.tooltip.error + .tooltiptext,
+.tooltip.error ~ .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
